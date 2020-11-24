@@ -1,0 +1,5 @@
+gunicorn
+requests
+flask
+selenium
+apscheduler
