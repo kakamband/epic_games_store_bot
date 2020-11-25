@@ -1,8 +1,6 @@
 from flask import make_response, request
 import flask
 import json
-import time
-import subprocess
 from trigger import trigg
 
 app = flask.Flask(__name__)
