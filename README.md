@@ -8,6 +8,14 @@ Run it on heroku or somewhere
   python trigger.py
   python web.py # To run web ui
 ```
+### Requirements
+```sh
+gunicorn  # For heroku
+requests
+flask
+selenium
+apscheduler
+```
 
 # Heroku
  ### Heroku-Buildpacks
@@ -16,7 +24,7 @@ Run it on heroku or somewhere
   Chrome Binary | https://github.com/heroku/heroku-buildpack-google-chrome
  
  ### Heroku-Procfile
-  ```
+  ```sh
   Procfile
      web: gunicorn web:app
      worker: python trigger.py
