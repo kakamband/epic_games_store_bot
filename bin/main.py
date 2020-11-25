@@ -4,19 +4,26 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from glist import Glist
+from .glist import Glist
+import logging
 
+# Heroku
 CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
 GOOGLE_CHROME_BIN = '/app/.apt/usr/bin/google-chrome'
 
+# Windows
 #GOOGLE_CHROME_BIN = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
-#CHROMEDRIVER_PATH = 'C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe'
+#CHROMEDRIVER_PATH = 'C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe' # or somewhere else
 
 gChromeOptions = webdriver.ChromeOptions()
 gChromeOptions.binary_location = GOOGLE_CHROME_BIN
 gChromeOptions.add_argument('--disable-gpu')
 gChromeOptions.add_argument('--no-sandbox')
 
+
+logging.basicConfig(filename="src/bot.log", format='%(asctime)s %(message)s', filemode='w')
+logger=logging.getLogger()
+logger.setLevel(logging.DEBUG) 
 
 class Bot:
     def __init__(self):
@@ -47,7 +54,7 @@ class Bot:
                         browser.implicitly_wait(5)
 
                         try:
-                            browser.find_element_by_xpath('//button[@class="css-19tmzba"]').click()
+                            browser.find_element_by_xpath('//button[@class="css-19tmzba"]').click() # sometimes
                     
                         except:
                             pass
@@ -57,7 +64,7 @@ class Bot:
                 
                         main_page = browser.current_window_handle 
                 
-                        wait.until(EC.element_to_be_clickable((By.ID, 'login-with-xbl'))).click()                       
+                        wait.until(EC.element_to_be_clickable((By.ID, 'login-with-xbl'))).click() # Xbox live account                      
                 
                         browser.switch_to.window(browser.window_handles[1])                                             
                 
@@ -72,7 +79,7 @@ class Bot:
                     
                         try:
                             browser.implicitly_wait(5)
-                            browser.find_element_by_xpath('//input[@value="No"]').click()
+                            browser.find_element_by_xpath('//input[@value="No"]').click() # sometimes
                     
                         except:
                             pass
@@ -80,7 +87,8 @@ class Bot:
                         browser.switch_to.window(main_page)
                 
                         browser.implicitly_wait(20)
-
+                        
+                        # Already owned?
                         if self.check_if_element(browser=browser, xpath='//button[@data-testid="purchase-cta-button"][@disabled]') \
                         and not self.check_if_element(browser=browser, xpath='//button[@class="btn btn-primary"]'):
                             Glist().owned(i['title'], i)
@@ -94,17 +102,16 @@ class Bot:
                             browser.implicitly_wait(5)
                         
                             Glist().owned(i['title'], i)
-                            print('Purchased {}'.format(i['title']))
+                            logger.info('Purchased {}'.format(i['title']))
                             
                         browser.quit()
 
                     except Exception as e:
                         browser.quit()
-                        print('error 111: ')
-                        print(e)
+                        logger.exception(e)
                 else:
-                    print(str(i['title']) + ' - Coming_soon( {} )'.format(i['start_date']))
+                    logger.info(str(i['title']) + ' - Coming_soon( {} )'.format(i['start_date']))
     
         else:
-            print('all_caught_up!!!')
+            logger.info('all_caught_up!!!')
 

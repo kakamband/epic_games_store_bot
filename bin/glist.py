@@ -14,15 +14,15 @@ class Glist:
         else:
             t = []
             for i in r.json()['games']:
-                with open('gamesordered.txt', 'r') as a:
+                with open('src/gamesordered.txt', 'r') as a:
                     if not i['title'] in [ j.replace('\n', '') for j in a.readlines() ]:
                         t.append(i)
 
             return t
 
     def owned(self, gname, gdta):
-        a = open('gamesordered.txt', 'a+')
-        f = open('data.txt', 'a+')
+        a = open('src/gamesordered.txt', 'a')
+        f = open('src/data.txt', 'a')
         if gname in a.readlines():
             print('Already owned')
         else:
