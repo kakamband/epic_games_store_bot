@@ -3,16 +3,24 @@ Epic game's weekly free games purchasing bot
 
 Run it on heroku or somewhere
 
-### Heroku-Buildpacks
- Chrome Driver | https://github.com/heroku/heroku-buildpack-chromedriver 
- --------------|---------------------------------------------------------
- Chrome Binary | https://github.com/heroku/heroku-buildpack-google-chrome
-
 ### Process 
 ```sh
   python trigger.py
-  python web.py # To run show games ordered
+  python web.py # To run web ui
 ```
+
+# Heroku
+ ### Heroku-Buildpacks
+  Chrome Driver | https://github.com/heroku/heroku-buildpack-chromedriver 
+  --------------|---------------------------------------------------------
+  Chrome Binary | https://github.com/heroku/heroku-buildpack-google-chrome
+ 
+ ### Heroku-Procfile
+  ```
+  Procfile
+     web: gunicorn web:app
+     worker: python trigger.py
+  ```
 
 License
 ----
