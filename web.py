@@ -2,7 +2,6 @@ from flask import make_response, request
 import flask
 import json
 from trigger import trigg
-from trigger import trigger
 
 app = flask.Flask(__name__)
 
