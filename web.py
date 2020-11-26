@@ -32,7 +32,7 @@ def trig():                                             # To run it manually.
     username = request.form['username']
     password = request.form['password']
     code = "<center>"
-    if username == 'injaneb@tuta.io' and password == 'MAq4Z4FBatdMPEi':       # change it if you want to.
+    if username == 'admin' and password == 'admin':       # change it if you want to.
         trigg()
         code += '<p style="text-align: justify;">'
         with open('src/bot.log', 'r') as b:
