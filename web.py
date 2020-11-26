@@ -1,5 +1,5 @@
 from flask import make_response, request
-import flask
+from flask import Flask
 import json
 from trigger import trigg
 
