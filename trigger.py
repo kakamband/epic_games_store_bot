@@ -1,5 +1,5 @@
-from bin.glist import Glist
-from bin.main import Bot
+from lib.glist import Glist
+from lib.main import Bot
 from apscheduler.schedulers.blocking import BlockingScheduler
 
 new_dta = Glist().check(mode='trigger')
