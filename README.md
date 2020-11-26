@@ -9,7 +9,7 @@ edit trigger.py hour=#any_hour (0 - 24)
 16   sched.add_job(trigg, 'cron', day_of_week='mon-sun', hour=12) # Runs everyday @ 12:00 
 ```
 
-Run it on heroku or somewhere
+Run it on heroku or somewhere or to run locally without scheduling run web.py and run from there.
 
 ---
 ### Process 
