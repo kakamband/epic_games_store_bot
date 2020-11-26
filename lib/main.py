@@ -21,7 +21,7 @@ gChromeOptions.add_argument('--disable-gpu')
 gChromeOptions.add_argument('--no-sandbox')
 
 
-logging.basicConfig(filename="src/bot.log", format='%(asctime)s %(message)s', filemode='w')
+logging.basicConfig(filename="src/bot.log", format='%(asctime)s %(message)s', filemode='a')
 logger=logging.getLogger()
 logger.setLevel(logging.DEBUG) 
 
